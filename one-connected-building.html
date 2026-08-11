@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>One Connected Building — Blessed Corporation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-sage: #EDF3E7;
+    --bg-card: #F8FBF5;
+    --text-deep: #2B4020;
+    --text-mid: #4E7A3A;
+    --line: #D7E4CB;
+    --accent-btn: #4E7A3A;
+    --accent-btn-hover: #3D6A2D;
+    --white-text: #F8FBF5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg-sage);
+    color: var(--text-deep);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    font-size: 18px;
+  }
+
+  /* Gate screen */
+  .gate {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 48px 40px;
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+  }
+  .gate h1 {
+    font-family: 'Lora', serif;
+    font-size: 26px;
+    color: var(--text-deep);
+    margin-bottom: 10px;
+  }
+  .gate p {
+    color: var(--text-mid);
+    font-size: 16px;
+    margin-bottom: 28px;
+  }
+  .gate input {
+    width: 100%;
+    font-size: 20px;
+    padding: 14px 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    text-align: center;
+    letter-spacing: 0.15em;
+    margin-bottom: 18px;
+    color: var(--text-deep);
+    background: #fff;
+  }
+  .gate input:focus-visible { outline: 3px solid var(--accent-btn); outline-offset: 2px; }
+  .gate button {
+    width: 100%;
+    background: var(--accent-btn);
+    color: var(--white-text);
+    font-size: 17px;
+    font-weight: 600;
+    padding: 14px 0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .gate button:hover { background: var(--accent-btn-hover); }
+  .gate button:focus-visible { outline: 3px solid var(--text-deep); outline-offset: 2px; }
+  .error-msg {
+    color: #9A3B3B;
+    font-size: 15px;
+    margin-top: 14px;
+    display: none;
+  }
+
+  /* Content screen */
+  .content { display:none; max-width: 900px; width: 100%; }
+  .content-header { text-align:center; margin-bottom: 24px; }
+  .content-header h1 {
+    font-family: 'Lora', serif;
+    font-size: 30px;
+    color: var(--text-deep);
+  }
+  .content-header p { color: var(--text-mid); margin-top: 6px; }
+  .content img {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    display: block;
+  }
+  .content-note {
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-mid);
+    margin-top: 18px;
+    font-style: italic;
+  }
+  .back-link {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 15px;
+  }
+  .back-link:hover { color: var(--text-deep); }
+</style>
+</head>
+<body>
+
+<div class="gate" id="gate">
+  <h1>One Connected Building</h1>
+  <p>This page contains additional development details. Please enter the access code provided to you.</p>
+  <input type="text" id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter code" aria-label="Access code">
+  <button id="submitPin">View page</button>
+  <p class="error-msg" id="errorMsg">That code didn't match. Please try again.</p>
+</div>
+
+<div class="content" id="content">
+  <div class="content-header">
+    <h1>One Connected Building</h1>
+    <p>Blessed Corporation — Senior Living, Medical &amp; Community Development</p>
+  </div>
+  <img src="proposal-graphic-redacted.png" alt="Preliminary concept graphic for the Blessed Corporation senior living, medical and community development on East 87th Street, Chicago">
+  <p class="content-note">Preliminary concept graphic. Building size, unit count, and cost figures are estimates only and subject to change following architectural, engineering, and zoning review.</p>
+  <a href="index.html" class="back-link">&larr; Back to homepage</a>
+</div>
+
+<script>
+  const CORRECT_PIN = "8717";
+  const gate = document.getElementById('gate');
+  const content = document.getElementById('content');
+  const input = document.getElementById('pinInput');
+  const errorMsg = document.getElementById('errorMsg');
+
+  function tryUnlock() {
+    if (input.value.trim() === CORRECT_PIN) {
+      gate.style.display = 'none';
+      content.style.display = 'block';
+    } else {
+      errorMsg.style.display = 'block';
+    }
+  }
+
+  document.getElementById('submitPin').addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') tryUnlock();
+  });
+</script>
+
+</body>
+</html>
