@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>One Connected Building — Blessed Corporation</title>
+<title>Project Checklist — Blessed Corporation</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -24,14 +24,18 @@
     background: var(--bg-sage);
     color: var(--text-deep);
     min-height: 100vh;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+
+  /* Gate screen */
+  .gate-wrap {
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 24px;
-    font-size: 18px;
   }
-
-  /* Gate screen */
   .gate {
     background: var(--bg-card);
     border: 1px solid var(--line);
@@ -41,123 +45,313 @@
     width: 100%;
     text-align: center;
   }
-  .gate h1 {
-    font-family: 'Lora', serif;
-    font-size: 26px;
-    color: var(--text-deep);
-    margin-bottom: 10px;
-  }
-  .gate p {
-    color: var(--text-mid);
-    font-size: 16px;
-    margin-bottom: 28px;
-  }
+  .gate h1 { font-family: 'Lora', serif; font-size: 26px; margin-bottom: 10px; }
+  .gate p { color: var(--text-mid); font-size: 16px; margin-bottom: 28px; }
   .gate input {
-    width: 100%;
-    font-size: 20px;
-    padding: 14px 16px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    text-align: center;
-    letter-spacing: 0.15em;
-    margin-bottom: 18px;
-    color: var(--text-deep);
-    background: #fff;
+    width: 100%; font-size: 20px; padding: 14px 16px;
+    border: 1px solid var(--line); border-radius: 6px;
+    text-align: center; letter-spacing: 0.15em; margin-bottom: 18px;
+    color: var(--text-deep); background: #fff;
   }
-  .gate input:focus-visible { outline: 3px solid var(--accent-btn); outline-offset: 2px; }
   .gate button {
-    width: 100%;
-    background: var(--accent-btn);
-    color: var(--white-text);
-    font-size: 17px;
-    font-weight: 600;
-    padding: 14px 0;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
+    width: 100%; background: var(--accent-btn); color: var(--white-text);
+    font-size: 17px; font-weight: 600; padding: 14px 0; border: none;
+    border-radius: 6px; cursor: pointer;
   }
   .gate button:hover { background: var(--accent-btn-hover); }
-  .gate button:focus-visible { outline: 3px solid var(--text-deep); outline-offset: 2px; }
-  .error-msg {
-    color: #9A3B3B;
-    font-size: 15px;
-    margin-top: 14px;
-    display: none;
-  }
+  .error-msg { color: #9A3B3B; font-size: 15px; margin-top: 14px; display: none; }
 
   /* Content screen */
-  .content { display:none; max-width: 900px; width: 100%; }
-  .content-header { text-align:center; margin-bottom: 24px; }
-  .content-header h1 {
-    font-family: 'Lora', serif;
-    font-size: 30px;
-    color: var(--text-deep);
-  }
+  .content { display:none; max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
+  .content-header { text-align:center; margin-bottom: 36px; }
+  .content-header h1 { font-family: 'Lora', serif; font-size: 30px; color: var(--text-deep); }
   .content-header p { color: var(--text-mid); margin-top: 6px; }
-  .content img {
-    width: 100%;
-    border-radius: 10px;
+
+  .section {
+    background: var(--bg-card);
     border: 1px solid var(--line);
-    display: block;
+    border-radius: 10px;
+    padding: 28px 28px 12px;
+    margin-bottom: 28px;
   }
-  .content-note {
-    text-align: center;
-    font-size: 14px;
+  .section h2 {
+    font-family: 'Lora', serif;
+    font-size: 20px;
+    color: var(--text-deep);
+    margin-bottom: 4px;
+  }
+  .section .section-sub {
     color: var(--text-mid);
-    margin-top: 18px;
-    font-style: italic;
+    font-size: 14px;
+    margin-bottom: 18px;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 0;
+    border-top: 1px solid var(--line);
+  }
+  .item:first-of-type { border-top: none; }
+  .item input[type="checkbox"] {
+    width: 20px; height: 20px; margin-top: 3px; accent-color: var(--accent-btn);
+    flex-shrink: 0;
+  }
+  .item-body { flex: 1; }
+  .item-label { font-weight: 500; color: var(--text-deep); }
+  .item-note {
+    width: 100%; margin-top: 8px; font-family: inherit; font-size: 14px;
+    padding: 8px 10px; border: 1px solid var(--line); border-radius: 5px;
+    color: var(--text-deep); background: #fff;
+  }
+  .item.done .item-label { text-decoration: line-through; color: var(--text-mid); }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 10px;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid var(--line);
+  }
+  .field-row:first-of-type { border-top: none; }
+  .field-label { font-size: 15px; color: var(--text-deep); }
+  .field-row input[type="text"] {
+    font-family: inherit; font-size: 14px; padding: 8px 10px;
+    border: 1px solid var(--line); border-radius: 5px; color: var(--text-deep); background: #fff;
+  }
+
+  .save-note {
+    text-align: center; font-size: 13px; color: var(--text-mid);
+    margin: 18px 0 30px; font-style: italic;
   }
   .back-link {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    color: var(--text-mid);
-    text-decoration: none;
-    font-size: 15px;
+    display: block; text-align: center; margin-top: 10px;
+    color: var(--text-mid); text-decoration: none; font-size: 15px;
   }
   .back-link:hover { color: var(--text-deep); }
+
+  @media (max-width: 560px) {
+    .field-row { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
 
-<div class="gate" id="gate">
-  <h1>One Connected Building</h1>
-  <p>This page contains additional development details. Please enter the access code provided to you.</p>
-  <input type="text" id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter code" aria-label="Access code">
-  <button id="submitPin">View page</button>
-  <p class="error-msg" id="errorMsg">That code didn't match. Please try again.</p>
+<div class="gate-wrap" id="gateWrap">
+  <div class="gate">
+    <h1>Project Checklist</h1>
+    <p>This page contains additional development tracking details. Please enter the access code provided to you.</p>
+    <input type="text" id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter code" aria-label="Access code">
+    <button id="submitPin">View page</button>
+    <p class="error-msg" id="errorMsg">That code didn't match. Please try again.</p>
+  </div>
 </div>
 
 <div class="content" id="content">
   <div class="content-header">
-    <h1>One Connected Building</h1>
+    <h1>Project Start-Up Checklist</h1>
     <p>Blessed Corporation — Senior Living, Medical &amp; Community Development</p>
   </div>
-  <img src="proposal-graphic-redacted.png" alt="Preliminary concept graphic for the Blessed Corporation senior living, medical and community development on East 87th Street, Chicago">
-  <p class="content-note">Preliminary concept graphic. Building size, unit count, and cost figures are estimates only and subject to change following architectural, engineering, and zoning review.</p>
+
+  <div class="section">
+    <h2>The First 10 Actions</h2>
+    <p class="section-sub">Track progress as each step is contacted, requested, or completed.</p>
+    <div id="actionsList"></div>
+  </div>
+
+  <div class="section">
+    <h2>Property Acquisition Tracking</h2>
+    <p class="section-sub">Key details to fill in as they're confirmed.</p>
+    <div id="acquisitionList"></div>
+  </div>
+
+  <div class="section">
+    <h2>Documents to Obtain Before Closing</h2>
+    <p class="section-sub">Check off each item as it's received.</p>
+    <div id="documentsList"></div>
+  </div>
+
+  <div class="section">
+    <h2>City Feasibility Items</h2>
+    <p class="section-sub">Initial items needed to determine whether the project can move forward.</p>
+    <div id="cityList"></div>
+  </div>
+
+  <div class="section">
+    <h2>Professional Proposals</h2>
+    <p class="section-sub">Track who's been contacted and whether a written proposal has been received.</p>
+    <div id="proposalsList"></div>
+  </div>
+
+  <p class="save-note">Progress is saved automatically in this browser.</p>
   <a href="index.html" class="back-link">&larr; Back to homepage</a>
 </div>
 
 <script>
   const CORRECT_PIN = "8717";
-  const gate = document.getElementById('gate');
+  const gateWrap = document.getElementById('gateWrap');
   const content = document.getElementById('content');
   const input = document.getElementById('pinInput');
   const errorMsg = document.getElementById('errorMsg');
 
   function tryUnlock() {
     if (input.value.trim() === CORRECT_PIN) {
-      gate.style.display = 'none';
+      gateWrap.style.display = 'none';
       content.style.display = 'block';
     } else {
       errorMsg.style.display = 'block';
     }
   }
-
   document.getElementById('submitPin').addEventListener('click', tryUnlock);
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') tryUnlock();
-  });
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryUnlock(); });
+
+  // ---- Checklist data ----
+  const actions = [
+    "Obtain seller contact, asking price, and authority to sell",
+    "Obtain the property PIN, legal description, tax bill, and deed",
+    "Use a letter of intent or purchase contract with due-diligence contingencies",
+    "Order title, survey, environmental review, and property inspection",
+    "Request the City zoning verification letter",
+    "Confirm whether senior apartments, medical offices, restaurant/community dining, and storage are allowed",
+    "Meet with the alderperson and Department of Planning and Development before final design",
+    "Ask an architect for a paid feasibility study and reduced-scope concept",
+    "Ask a developer for a written scope, fee, schedule, and budget responsibility",
+    "Prepare a sources-and-uses plan and identify any funding gap"
+  ];
+
+  const acquisitionFields = [
+    "Seller / owner name",
+    "Seller contact information",
+    "Property Index Number (PIN)",
+    "Legal description",
+    "Lot dimensions / square footage",
+    "Current zoning district",
+    "Known liens, taxes, violations, or tenants",
+    "Target contract date",
+    "Due-diligence deadline",
+    "Target closing date"
+  ];
+
+  const documents = [
+    "Current deed and ownership documents",
+    "Title commitment and lien search",
+    "Property tax bill and PIN confirmation",
+    "Boundary and topographic survey",
+    "Existing leases or occupancy agreements",
+    "Building plans, permits, and violation history",
+    "Phase I environmental assessment",
+    "Asbestos/lead/mold and demolition review",
+    "Utility and site-condition information",
+    "Appraisal or broker price support"
+  ];
+
+  const cityItems = [
+    "Zoning map and district lookup",
+    "Zoning Verification Letter",
+    "Written zoning analysis / opinion",
+    "Certificate of Zoning Compliance",
+    "Building permit and violation records",
+    "Water, sewer, alley, curb, and utility information",
+    "Preliminary accessibility consultation",
+    "Zoning amendment application, if needed",
+    "Planned Development / Part II review, if required",
+    "Building permit review"
+  ];
+
+  const proposals = [
+    "Architect + engineering",
+    "Developer / development manager",
+    "Chicago planning/zoning filing fees confirmed with City",
+    "Planned Development review, if required",
+    "Building permit review"
+  ];
+
+  const STORE_KEY = 'http711_checklist_v1';
+  function loadState() {
+    try { return JSON.parse(localStorage.getItem(STORE_KEY)) || {}; }
+    catch(e) { return {}; }
+  }
+  function saveState(state) {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e) {}
+  }
+  let state = loadState();
+
+  function renderChecklist(containerId, items, keyPrefix) {
+    const container = document.getElementById(containerId);
+    items.forEach((label, i) => {
+      const key = keyPrefix + '_' + i;
+      const checked = !!(state[key] && state[key].done);
+      const note = (state[key] && state[key].note) || '';
+
+      const item = document.createElement('div');
+      item.className = 'item' + (checked ? ' done' : '');
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = checked;
+
+      const body = document.createElement('div');
+      body.className = 'item-body';
+      const lbl = document.createElement('div');
+      lbl.className = 'item-label';
+      lbl.textContent = label;
+      const noteInput = document.createElement('input');
+      noteInput.type = 'text';
+      noteInput.className = 'item-note';
+      noteInput.placeholder = 'Notes (contact, date, status)';
+      noteInput.value = note;
+
+      cb.addEventListener('change', () => {
+        state[key] = state[key] || {};
+        state[key].done = cb.checked;
+        item.classList.toggle('done', cb.checked);
+        saveState(state);
+      });
+      noteInput.addEventListener('input', () => {
+        state[key] = state[key] || {};
+        state[key].note = noteInput.value;
+        saveState(state);
+      });
+
+      body.appendChild(lbl);
+      body.appendChild(noteInput);
+      item.appendChild(cb);
+      item.appendChild(body);
+      container.appendChild(item);
+    });
+  }
+
+  function renderFields(containerId, fields, keyPrefix) {
+    const container = document.getElementById(containerId);
+    fields.forEach((label, i) => {
+      const key = keyPrefix + '_' + i;
+      const value = state[key] || '';
+
+      const row = document.createElement('div');
+      row.className = 'field-row';
+      const lbl = document.createElement('div');
+      lbl.className = 'field-label';
+      lbl.textContent = label;
+      const inputEl = document.createElement('input');
+      inputEl.type = 'text';
+      inputEl.value = value;
+      inputEl.addEventListener('input', () => {
+        state[key] = inputEl.value;
+        saveState(state);
+      });
+      row.appendChild(lbl);
+      row.appendChild(inputEl);
+      container.appendChild(row);
+    });
+  }
+
+  renderChecklist('actionsList', actions, 'action');
+  renderFields('acquisitionList', acquisitionFields, 'acq');
+  renderChecklist('documentsList', documents, 'doc');
+  renderChecklist('cityList', cityItems, 'city');
+  renderChecklist('proposalsList', proposals, 'prop');
 </script>
 
 </body>
