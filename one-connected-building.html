@@ -566,11 +566,18 @@
       method: 'POST',
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       body: encodeForm(data)
-    }).then(() => {
-      document.getElementById('submitStatus').style.display = 'block';
+    }).then((response) => {
+      const statusEl = document.getElementById('submitStatus');
+      if (response.ok) {
+        statusEl.textContent = 'Update sent — thank you!';
+      } else {
+        statusEl.textContent = 'The update did not go through (error ' + response.status + '). Please tell Claude this happened.';
+      }
+      statusEl.style.display = 'block';
     }).catch(() => {
-      document.getElementById('submitStatus').textContent = 'Something went wrong — please try again.';
-      document.getElementById('submitStatus').style.display = 'block';
+      const statusEl = document.getElementById('submitStatus');
+      statusEl.textContent = 'Something went wrong — please try again, and tell Claude if it keeps happening.';
+      statusEl.style.display = 'block';
     });
   });
 </script>
