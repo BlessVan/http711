@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Login — Blessed Corporation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root {
+    --bg-sage: #EDF3E7;
+    --bg-card: #F8FBF5;
+    --text-deep: #2B4020;
+    --text-mid: #4E7A3A;
+    --line: #D7E4CB;
+    --accent-btn: #4E7A3A;
+    --accent-btn-hover: #3D6A2D;
+    --white-text: #F8FBF5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg-sage);
+    color: var(--text-deep);
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    font-size: 17px;
+  }
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 48px 40px;
+    max-width: 420px; width: 100%;
+    text-align: center;
+  }
+  h1 { font-family: 'Lora', serif; font-size: 26px; margin-bottom: 10px; }
+  p { color: var(--text-mid); font-size: 16px; margin-bottom: 28px; }
+  button {
+    background: var(--accent-btn); color: var(--white-text);
+    font-size: 17px; font-weight: 600; padding: 14px 30px;
+    border: none; border-radius: 6px; cursor: pointer;
+  }
+  button:hover { background: var(--accent-btn-hover); }
+</style>
+</head>
+<body>
+
+<div class="card">
+  <h1>Board Login</h1>
+  <p>This page is for Blessed Corporation board members. Please log in with your invited account.</p>
+  <button onclick="netlifyIdentity.open()">Log In</button>
+</div>
+
+<script>
+  window.addEventListener('load', () => {
+    netlifyIdentity.on('login', () => {
+      window.location.href = '/board.html';
+    });
+  });
+</script>
+
+</body>
+</html>

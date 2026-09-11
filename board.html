@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Board Information — Blessed Corporation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<style>
+  :root {
+    --bg-sage: #EDF3E7;
+    --bg-card: #F8FBF5;
+    --text-deep: #2B4020;
+    --text-mid: #4E7A3A;
+    --line: #D7E4CB;
+    --accent-btn: #4E7A3A;
+    --accent-btn-hover: #3D6A2D;
+    --white-text: #F8FBF5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--bg-sage);
+    color: var(--text-deep);
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  .topbar {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 32px; border-bottom: 1px solid var(--line);
+    background: var(--bg-card);
+  }
+  .topbar .org { font-family: 'Lora', serif; font-weight: 600; font-size: 18px; }
+  .logout-link { font-size: 14px; color: var(--text-mid); cursor: pointer; text-decoration: underline; }
+
+  .content { max-width: 820px; margin: 0 auto; padding: 44px 24px 80px; }
+  .content-header { text-align:center; margin-bottom: 36px; }
+  .content-header h1 { font-family: 'Lora', serif; font-size: 30px; color: var(--text-deep); }
+  .content-header p { color: var(--text-mid); margin-top: 6px; }
+
+  .section {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 26px 28px;
+    margin-bottom: 26px;
+  }
+  .section h2 { font-family: 'Lora', serif; font-size: 20px; margin-bottom: 4px; }
+  .section .section-sub { color: var(--text-mid); font-size: 14px; margin-bottom: 16px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--text-mid); font-size: 13px; text-transform: uppercase; letter-spacing: 0.03em; }
+
+  .note-entry { border-bottom: 1px solid var(--line); padding: 10px 0; }
+  .note-entry:last-child { border-bottom: none; }
+  .note-date { font-size: 13px; color: var(--text-mid); font-weight: 600; }
+
+  ul.todo { list-style: none; }
+  ul.todo li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+  ul.todo li:last-child { border-bottom: none; }
+
+  .placeholder-tag {
+    display: inline-block; font-size: 12px; color: var(--text-mid);
+    background: var(--bg-sage); border: 1px solid var(--line);
+    border-radius: 4px; padding: 2px 8px; margin-left: 6px;
+  }
+  .edit-note {
+    text-align: center; font-size: 13px; color: var(--text-mid);
+    font-style: italic; margin-top: 8px;
+  }
+  .comments-box {
+    margin-top: 14px;
+    border-top: 1px dashed var(--line);
+    padding-top: 12px;
+  }
+  .comments-box .comments-label {
+    font-size: 12px; text-transform: uppercase; letter-spacing: 0.03em;
+    color: var(--text-mid); margin-bottom: 6px;
+  }
+  .comments-box .comments-area {
+    min-height: 60px;
+    color: var(--text-deep);
+    font-size: 15px;
+  }
+  .section.double-size .comments-box .comments-area {
+    min-height: 130px;
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="org">Blessed Corporation — Board Information</div>
+  <span class="logout-link" onclick="netlifyIdentity.logout()">Log out</span>
+</div>
+
+<div class="content">
+  <div class="content-header">
+    <h1>Board Information</h1>
+    <p>For board members only. Update this page directly through GitHub, or ask Claude to help.</p>
+  </div>
+
+  <div class="section">
+    <h2>IRS</h2>
+    <p class="section-sub">Filing status, dates, and notes.</p>
+    <table>
+      <tr><th>Item</th><th>Status</th><th>Date</th><th>Notes</th></tr>
+      <tr><td>Example: Form 990 (fiscal year)</td><td>Example: Filed</td><td>Example: 5/15/2026</td><td>Example: Confirmation on file</td></tr>
+    </table>
+    <p class="edit-note">Replace example rows with real entries in GitHub.</p>
+    <div class="comments-box">
+      <div class="comments-label">Notes / Reminders</div>
+      <div class="comments-area">Example: Make sure to file this form again next year.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Licenses</h2>
+    <p class="section-sub">Active licenses and renewal dates.</p>
+    <table>
+      <tr><th>License</th><th>Status</th><th>Renewal Date</th><th>Notes</th></tr>
+      <tr><td>Example: State charitable solicitation license</td><td>Example: Active</td><td>Example: 1/1/2027</td><td>Example: —</td></tr>
+    </table>
+    <p class="edit-note">Replace example rows with real entries in GitHub.</p>
+    <div class="comments-box">
+      <div class="comments-label">Notes / Reminders</div>
+      <div class="comments-area">Example: Renewal notice usually arrives 60 days early.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Franchise Tax Board</h2>
+    <p class="section-sub">California FTB filing status and dates.</p>
+    <table>
+      <tr><th>Item</th><th>Status</th><th>Date</th><th>Notes</th></tr>
+      <tr><td>Example: Statement of Information</td><td>Example: Filed</td><td>Example: 3/1/2026</td><td>Example: —</td></tr>
+    </table>
+    <p class="edit-note">Replace example rows with real entries in GitHub.</p>
+    <div class="comments-box">
+      <div class="comments-label">Notes / Reminders</div>
+      <div class="comments-area">Example: FTB filing is due annually regardless of income.</div>
+    </div>
+  </div>
+
+  <div class="section double-size">
+    <h2>Board Notes</h2>
+    <p class="section-sub">Dated entries — most recent first.</p>
+    <div class="note-entry">
+      <div class="note-date">Example: 8/1/2026</div>
+      <div>Example note text goes here.</div>
+    </div>
+    <p class="edit-note">Replace example entry with real notes in GitHub.</p>
+    <div class="comments-box">
+      <div class="comments-label">Notes / Reminders</div>
+      <div class="comments-area">Example: Add more room here for longer meeting notes.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>To-Do List</h2>
+    <p class="section-sub">Open items for the board.</p>
+    <ul class="todo">
+      <li>Example: Confirm insurance renewal date <span class="placeholder-tag">example</span></li>
+    </ul>
+    <p class="edit-note">Replace example item with real to-dos in GitHub.</p>
+    <div class="comments-box">
+      <div class="comments-label">Notes / Reminders</div>
+      <div class="comments-area">Example: Revisit this list at the top of each board meeting.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Other Pertinent Information</h2>
+    <p class="section-sub">Anything else the board should know.</p>
+    <p>Example: placeholder text goes here.</p>
+    <p class="edit-note">Replace example text with real information in GitHub.</p>
+    <div class="comments-box">
+      <div class="comments-label">Notes / Reminders</div>
+      <div class="comments-area">Example: Add anything that doesn't fit the sections above.</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Submit an Update</h2>
+    <p class="section-sub">Use this to send Vanessa a new item to add above. This does not change the page itself — she'll add it after receiving your update.</p>
+
+    <form name="board-update" id="boardUpdateForm" method="POST" data-netlify="true" netlify-honeypot="bu-bot-field">
+      <input type="hidden" name="form-name" value="board-update">
+      <p style="position:absolute; left:-9999px;"><label>Don't fill this out: <input name="bu-bot-field"></label></p>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-size:14px; color:var(--text-mid); margin-bottom:4px;">Your name</label>
+        <input type="text" name="submitted_by" required style="width:100%; font-family:inherit; font-size:15px; padding:8px 10px; border:1px solid var(--line); border-radius:5px;">
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-size:14px; color:var(--text-mid); margin-bottom:4px;">Category</label>
+        <select name="category" style="width:100%; font-family:inherit; font-size:15px; padding:8px 10px; border:1px solid var(--line); border-radius:5px;">
+          <option>IRS</option>
+          <option>Licenses</option>
+          <option>Franchise Tax Board</option>
+          <option>Board Notes</option>
+          <option>To-Do List</option>
+          <option>Other</option>
+        </select>
+      </div>
+
+      <div style="margin-bottom:14px;">
+        <label style="display:block; font-size:14px; color:var(--text-mid); margin-bottom:4px;">Date (if relevant)</label>
+        <input type="date" name="update_date" style="width:100%; font-family:inherit; font-size:15px; padding:8px 10px; border:1px solid var(--line); border-radius:5px;">
+      </div>
+
+      <div style="margin-bottom:18px;">
+        <label style="display:block; font-size:14px; color:var(--text-mid); margin-bottom:4px;">Update / notes</label>
+        <textarea name="details" rows="4" required style="width:100%; font-family:inherit; font-size:15px; padding:8px 10px; border:1px solid var(--line); border-radius:5px;"></textarea>
+      </div>
+
+      <div style="text-align:center;">
+        <button type="submit" style="background:var(--accent-btn); color:var(--white-text); font-size:16px; font-weight:600; padding:12px 28px; border:none; border-radius:6px; cursor:pointer;">Send Update to Vanessa</button>
+        <p id="boardUpdateStatus" style="margin-top:12px; font-weight:600; display:none;"></p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  (function() {
+    const form = document.getElementById('boardUpdateForm');
+    if (!form) return;
+    function encodeForm(data) {
+      return Object.keys(data).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k])).join('&');
+    }
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = {};
+      Array.from(form.elements).forEach(el => { if (el.name) data[el.name] = el.value; });
+      fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: encodeForm(data)
+      }).then((response) => {
+        const statusEl = document.getElementById('boardUpdateStatus');
+        if (response.ok) {
+          statusEl.textContent = 'Update sent to Vanessa — thank you!';
+          form.reset();
+        } else {
+          statusEl.textContent = 'The update did not go through (error ' + response.status + '). Please tell Claude this happened.';
+        }
+        statusEl.style.display = 'block';
+      }).catch(() => {
+        const statusEl = document.getElementById('boardUpdateStatus');
+        statusEl.textContent = 'Something went wrong — please try again, and tell Claude if it keeps happening.';
+        statusEl.style.display = 'block';
+      });
+    });
+  })();
+</script>
+
+<script>
+  window.addEventListener('load', () => {
+    if (window.netlifyIdentity) {
+      netlifyIdentity.on('logout', () => { window.location.href = '/login.html'; });
+    }
+  });
+</script>
+
+</body>
+</html>
