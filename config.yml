@@ -1,0 +1,84 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "board"
+    label: "Board Information"
+    files:
+      - name: "board_data"
+        label: "Board Information Page"
+        file: "content/board-data.json"
+        fields:
+          - label: "IRS"
+            name: "irs"
+            widget: "object"
+            fields:
+              - label: "Entries"
+                name: "rows"
+                widget: "list"
+                fields:
+                  - { label: "Item", name: "item", widget: "string" }
+                  - { label: "Status", name: "status", widget: "string" }
+                  - { label: "Date", name: "date", widget: "string" }
+                  - { label: "Notes", name: "notes", widget: "string" }
+              - { label: "Notes / Reminders", name: "comments", widget: "text", required: false }
+
+          - label: "Licenses"
+            name: "licenses"
+            widget: "object"
+            fields:
+              - label: "Entries"
+                name: "rows"
+                widget: "list"
+                fields:
+                  - { label: "License", name: "item", widget: "string" }
+                  - { label: "Status", name: "status", widget: "string" }
+                  - { label: "Renewal Date", name: "date", widget: "string" }
+                  - { label: "Notes", name: "notes", widget: "string" }
+              - { label: "Notes / Reminders", name: "comments", widget: "text", required: false }
+
+          - label: "Franchise Tax Board"
+            name: "franchise_tax"
+            widget: "object"
+            fields:
+              - label: "Entries"
+                name: "rows"
+                widget: "list"
+                fields:
+                  - { label: "Item", name: "item", widget: "string" }
+                  - { label: "Status", name: "status", widget: "string" }
+                  - { label: "Date", name: "date", widget: "string" }
+                  - { label: "Notes", name: "notes", widget: "string" }
+              - { label: "Notes / Reminders", name: "comments", widget: "text", required: false }
+
+          - label: "Board Notes"
+            name: "board_notes"
+            widget: "object"
+            fields:
+              - label: "Entries"
+                name: "entries"
+                widget: "list"
+                fields:
+                  - { label: "Date", name: "date", widget: "string" }
+                  - { label: "Note", name: "text", widget: "text" }
+              - { label: "Notes / Reminders", name: "comments", widget: "text", required: false }
+
+          - label: "To-Do List"
+            name: "todo"
+            widget: "object"
+            fields:
+              - label: "Items"
+                name: "items"
+                widget: "list"
+              - { label: "Notes / Reminders", name: "comments", widget: "text", required: false }
+
+          - label: "Other Pertinent Information"
+            name: "other"
+            widget: "object"
+            fields:
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Notes / Reminders", name: "comments", widget: "text", required: false }
