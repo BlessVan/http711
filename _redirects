@@ -1,2 +1,5 @@
 /board.html  /board.html  200!  Role=board
 /board.html  /login.html  401
+
+/admin/*  /admin/:splat  200!  Role=board
+/admin/*  /login.html    401
