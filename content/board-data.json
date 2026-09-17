@@ -1,0 +1,36 @@
+{
+  "irs": {
+    "rows": [
+      { "item": "Example: Form 990 (fiscal year)", "status": "Example: Filed", "date": "Example: 5/15/2026", "notes": "Example: Confirmation on file" }
+    ],
+    "comments": "Example: Make sure to file this form again next year."
+  },
+  "licenses": {
+    "rows": [
+      { "item": "Example: State charitable solicitation license", "status": "Example: Active", "date": "Example: 1/1/2027", "notes": "Example: —" }
+    ],
+    "comments": "Example: Renewal notice usually arrives 60 days early."
+  },
+  "franchise_tax": {
+    "rows": [
+      { "item": "Example: Statement of Information", "status": "Example: Filed", "date": "Example: 3/1/2026", "notes": "Example: —" }
+    ],
+    "comments": "Example: FTB filing is due annually regardless of income."
+  },
+  "board_notes": {
+    "entries": [
+      { "date": "Example: 8/1/2026", "text": "Example note text goes here." }
+    ],
+    "comments": "Example: Add more room here for longer meeting notes."
+  },
+  "todo": {
+    "items": [
+      "Example: Confirm insurance renewal date"
+    ],
+    "comments": "Example: Revisit this list at the top of each board meeting."
+  },
+  "other": {
+    "text": "Example: placeholder text goes here.",
+    "comments": "Example: Add anything that doesn't fit the sections above."
+  }
+}
