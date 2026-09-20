@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Edit Project Checklist — Blessed Corporation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-sage: #EDF3E7; --bg-card: #F8FBF5; --text-deep: #2B4020; --text-mid: #4E7A3A;
+    --line: #D7E4CB; --accent-btn: #4E7A3A; --accent-btn-hover: #3D6A2D; --white-text: #F8FBF5;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Source Sans 3',sans-serif; background:var(--bg-sage); color:var(--text-deep); font-size:17px; line-height:1.55; }
+  .gate-wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
+  .gate { background:var(--bg-card); border:1px solid var(--line); border-radius:12px; padding:48px 40px; max-width:420px; width:100%; text-align:center; }
+  .gate h1 { font-family:'Lora',serif; font-size:26px; margin-bottom:10px; }
+  .gate p { color:var(--text-mid); font-size:16px; margin-bottom:28px; }
+  .gate input { width:100%; font-size:20px; padding:14px 16px; border:1px solid var(--line); border-radius:6px; text-align:center; letter-spacing:0.15em; margin-bottom:18px; color:var(--text-deep); background:#fff; }
+  .gate button { width:100%; background:var(--accent-btn); color:var(--white-text); font-size:17px; font-weight:600; padding:14px 0; border:none; border-radius:6px; cursor:pointer; }
+  .gate button:hover { background:var(--accent-btn-hover); }
+  .gate-error { color:#9A3B3B; font-size:15px; margin-top:14px; display:none; }
+
+  #editPage { display:none; max-width:820px; margin:0 auto; padding:44px 24px 100px; }
+  .content-header { text-align:center; margin-bottom:36px; }
+  .content-header h1 { font-family:'Lora',serif; font-size:30px; }
+  .content-header p { color:var(--text-mid); margin-top:6px; }
+
+  .section { background:var(--bg-card); border:1px solid var(--line); border-radius:10px; padding:26px 28px; margin-bottom:26px; }
+  .section h2 { font-family:'Lora',serif; font-size:20px; margin-bottom:4px; }
+  .section .section-sub { color:var(--text-mid); font-size:14px; margin-bottom:16px; }
+
+  .item { display:flex; align-items:flex-start; gap:12px; padding:12px 0; border-top:1px solid var(--line); }
+  .item:first-of-type { border-top:none; }
+  .item input[type="checkbox"] { width:20px; height:20px; margin-top:3px; accent-color:var(--accent-btn); flex-shrink:0; }
+  .item-body { flex:1; }
+  .item-label { font-weight:500; display:block; margin-bottom:6px; }
+  .item-note { width:100%; font-family:inherit; font-size:14px; padding:8px 10px; border:1px solid var(--line); border-radius:5px; color:var(--text-deep); background:#fff; }
+
+  .field-row { display:grid; grid-template-columns:1fr 1.3fr; gap:10px; align-items:center; padding:10px 0; border-top:1px solid var(--line); }
+  .field-row:first-of-type { border-top:none; }
+  .field-label { font-size:15px; color:var(--text-deep); }
+  .field-row input[type="text"] { font-family:inherit; font-size:14px; padding:8px 10px; border:1px solid var(--line); border-radius:5px; color:var(--text-deep); background:#fff; }
+
+  .save-row { text-align:center; margin-top:10px; }
+  .save-btn { background:var(--accent-btn); color:var(--white-text); font-size:17px; font-weight:600; padding:14px 36px; border:none; border-radius:6px; cursor:pointer; }
+  .save-btn:hover { background:var(--accent-btn-hover); }
+  .save-btn:disabled { opacity:0.6; cursor:not-allowed; }
+  #saveStatus { margin-top:14px; font-weight:600; display:none; }
+  .back-link { display:block; text-align:center; margin-top:20px; color:var(--text-mid); text-decoration:none; font-size:15px; }
+
+  @media (max-width:560px) { .field-row { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="gate-wrap" id="gateWrap">
+  <div class="gate">
+    <h1>Edit Project Checklist</h1>
+    <p>Please enter your personal editing code.</p>
+    <input type="text" id="pinInput" inputmode="numeric" maxlength="6" placeholder="Enter code" aria-label="Editing code">
+    <button id="submitPin">Continue</button>
+    <p class="gate-error" id="gateError">That code didn't match. Please try again.</p>
+  </div>
+</div>
+
+<div id="editPage">
+  <div class="content-header">
+    <h1>Edit Project Checklist</h1>
+    <p>Changes here will appear on the checklist page within a minute or two of saving.</p>
+  </div>
+
+  <div class="section">
+    <h2>The First 10 Actions</h2>
+    <p class="section-sub">Check off completed items and add notes.</p>
+    <div id="actionsList"></div>
+  </div>
+
+  <div class="section">
+    <h2>Property Acquisition Tracking</h2>
+    <div id="acquisitionList"></div>
+  </div>
+
+  <div class="section">
+    <h2>Documents to Obtain Before Closing</h2>
+    <div id="documentsList"></div>
+  </div>
+
+  <div class="section">
+    <h2>City Feasibility Items</h2>
+    <div id="cityList"></div>
+  </div>
+
+  <div class="section">
+    <h2>Professional Proposals</h2>
+    <div id="proposalsList"></div>
+  </div>
+
+  <div class="save-row">
+    <button class="save-btn" id="saveBtn">Save Changes</button>
+    <p id="saveStatus"></p>
+  </div>
+
+  <a href="/one-connected-building.html" class="back-link">&larr; View the checklist page</a>
+</div>
+
+<script>
+  const gateWrap = document.getElementById('gateWrap');
+  const editPage = document.getElementById('editPage');
+  const input = document.getElementById('pinInput');
+  const gateError = document.getElementById('gateError');
+  let enteredPin = "";
+
+  const actionLabels = [
+    "Obtain seller contact, asking price, and authority to sell",
+    "Obtain the property PIN, legal description, tax bill, and deed",
+    "Use a letter of intent or purchase contract with due-diligence contingencies",
+    "Order title, survey, environmental review, and property inspection",
+    "Request the City zoning verification letter",
+    "Confirm whether senior apartments, medical offices, restaurant/community dining, and storage are allowed",
+    "Meet with the alderperson and Department of Planning and Development before final design",
+    "Ask an architect for a paid feasibility study and reduced-scope concept",
+    "Ask a developer for a written scope, fee, schedule, and budget responsibility",
+    "Prepare a sources-and-uses plan and identify any funding gap"
+  ];
+  const acquisitionLabels = [
+    "Seller / owner name","Seller contact information","Property Index Number (PIN)","Legal description",
+    "Lot dimensions / square footage","Current zoning district","Known liens, taxes, violations, or tenants",
+    "Target contract date","Due-diligence deadline","Target closing date"
+  ];
+  const documentLabels = [
+    "Current deed and ownership documents","Title commitment and lien search","Property tax bill and PIN confirmation",
+    "Boundary and topographic survey","Existing leases or occupancy agreements","Building plans, permits, and violation history",
+    "Phase I environmental assessment","Asbestos/lead/mold and demolition review","Utility and site-condition information",
+    "Appraisal or broker price support"
+  ];
+  const cityLabels = [
+    "Zoning map and district lookup","Zoning Verification Letter","Written zoning analysis / opinion",
+    "Certificate of Zoning Compliance","Building permit and violation records","Water, sewer, alley, curb, and utility information",
+    "Preliminary accessibility consultation","Zoning amendment application, if needed",
+    "Planned Development / Part II review, if required","Building permit review"
+  ];
+  const proposalLabels = [
+    "Architect + engineering","Developer / development manager",
+    "Chicago planning/zoning filing fees confirmed with City","Planned Development review, if required","Building permit review"
+  ];
+
+  function renderChecklistEdit(containerId, labels, items, prefix) {
+    const c = document.getElementById(containerId);
+    c.innerHTML = labels.map((label, i) => {
+      const it = (items && items[i]) || {};
+      return `<div class="item">
+        <input type="checkbox" id="${prefix}_${i}_done" ${it.done ? 'checked' : ''}>
+        <div class="item-body">
+          <label class="item-label" for="${prefix}_${i}_done">${label}</label>
+          <input type="text" class="item-note" id="${prefix}_${i}_note" value="${(it.note||'').replace(/"/g,'&quot;')}" placeholder="Notes">
+        </div>
+      </div>`;
+    }).join('');
+  }
+  function renderChecklistEditSimple(containerId, labels, items, prefix) {
+    const c = document.getElementById(containerId);
+    c.innerHTML = labels.map((label, i) => {
+      const it = (items && items[i]) || {};
+      return `<div class="item">
+        <input type="checkbox" id="${prefix}_${i}_done" ${it.done ? 'checked' : ''}>
+        <div class="item-body"><label class="item-label" for="${prefix}_${i}_done">${label}</label></div>
+      </div>`;
+    }).join('');
+  }
+  function renderFieldsEdit(containerId, labels, values, prefix) {
+    const c = document.getElementById(containerId);
+    c.innerHTML = labels.map((label, i) => {
+      const v = (values && values[i]) || '';
+      return `<div class="field-row"><div class="field-label">${label}</div><input type="text" id="${prefix}_${i}" value="${v.replace(/"/g,'&quot;')}"></div>`;
+    }).join('');
+  }
+
+  function loadData() {
+    fetch('/content/checklist-data.json', { cache: 'no-store' })
+      .then(r => r.json())
+      .then(data => {
+        renderChecklistEdit('actionsList', actionLabels, data.actions, 'action');
+        renderFieldsEdit('acquisitionList', acquisitionLabels, data.acquisition, 'acq');
+        renderChecklistEditSimple('documentsList', documentLabels, data.documents, 'doc');
+        renderChecklistEditSimple('cityList', cityLabels, data.city, 'city');
+        renderChecklistEditSimple('proposalsList', proposalLabels, data.proposals, 'prop');
+      })
+      .catch(() => {
+        renderChecklistEdit('actionsList', actionLabels, [], 'action');
+        renderFieldsEdit('acquisitionList', acquisitionLabels, [], 'acq');
+        renderChecklistEditSimple('documentsList', documentLabels, [], 'doc');
+        renderChecklistEditSimple('cityList', cityLabels, [], 'city');
+        renderChecklistEditSimple('proposalsList', proposalLabels, [], 'prop');
+        document.getElementById('saveStatus').textContent = 'Could not load current content. You can still fill in and save.';
+        document.getElementById('saveStatus').style.display = 'block';
+      });
+  }
+
+  function tryUnlock() {
+    enteredPin = input.value.trim();
+    if (!enteredPin) { gateError.style.display = 'block'; return; }
+    gateWrap.style.display = 'none';
+    editPage.style.display = 'block';
+    loadData();
+  }
+  document.getElementById('submitPin').addEventListener('click', tryUnlock);
+  input.addEventListener('keydown', function(e) { if (e.key === 'Enter') tryUnlock(); });
+
+  document.getElementById('saveBtn').addEventListener('click', function() {
+    function collectChecklist(labels, prefix) {
+      return labels.map((_, i) => ({
+        done: document.getElementById(`${prefix}_${i}_done`).checked,
+        note: document.getElementById(`${prefix}_${i}_note`) ? document.getElementById(`${prefix}_${i}_note`).value : undefined
+      }));
+    }
+    function collectSimple(labels, prefix) {
+      return labels.map((_, i) => ({ done: document.getElementById(`${prefix}_${i}_done`).checked }));
+    }
+    function collectFields(labels, prefix) {
+      return labels.map((_, i) => document.getElementById(`${prefix}_${i}`).value);
+    }
+
+    const data = {
+      actions: collectChecklist(actionLabels, 'action'),
+      acquisition: collectFields(acquisitionLabels, 'acq'),
+      documents: collectSimple(documentLabels, 'doc'),
+      city: collectSimple(cityLabels, 'city'),
+      proposals: collectSimple(proposalLabels, 'prop')
+    };
+
+    const statusEl = document.getElementById('saveStatus');
+    const btn = document.getElementById('saveBtn');
+    btn.disabled = true;
+    statusEl.textContent = 'Saving…';
+    statusEl.style.display = 'block';
+
+    fetch('/.netlify/functions/update-checklist', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ pin: enteredPin, data: data })
+    })
+      .then(async (r) => {
+        const result = await r.json().catch(() => ({}));
+        btn.disabled = false;
+        if (r.ok && result.success) {
+          statusEl.textContent = 'Saved! It may take a minute or two to appear on the checklist page.';
+        } else {
+          statusEl.textContent = 'Could not save: ' + (result.error || ('error ' + r.status)) + ' — please tell Claude.';
+        }
+      })
+      .catch(() => {
+        btn.disabled = false;
+        statusEl.textContent = 'Something went wrong — please try again, and tell Claude if it keeps happening.';
+      });
+  });
+</script>
+
+</body>
+</html>
