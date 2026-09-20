@@ -114,9 +114,9 @@
     </div>
     <div class="action-row">
       <h3>Send Update to Vanessa</h3>
-      <p>Emails Vanessa a note. Does not change what's shown above.</p>
+      <p>Emails Vanessa everything currently filled in above, plus an optional note. Does not save it to the page.</p>
       <input type="text" class="name-input" id="senderName" placeholder="Your name">
-      <textarea class="notes-input" id="senderNotes" rows="3" placeholder="Update / notes"></textarea>
+      <textarea class="notes-input" id="senderNotes" rows="3" placeholder="Optional extra note"></textarea>
       <button class="action-btn" id="sendBtn">Send Update to Vanessa</button>
       <p class="action-status" id="sendStatus"></p>
     </div>
@@ -280,27 +280,62 @@
       });
     });
 
-    // ---- Send Update to Vanessa ----
+    // ---- Send Update to Vanessa (includes full current checklist) ----
+    function buildSummary() {
+      const lines = [];
+      lines.push('THE FIRST 10 ACTIONS');
+      actionLabels.forEach((label, i) => {
+        const done = document.getElementById(`action_${i}_done`).checked;
+        const note = document.getElementById(`action_${i}_note`).value;
+        lines.push(`${done ? '[x]' : '[ ]'} ${label}${note ? ' — note: ' + note : ''}`);
+      });
+      lines.push('');
+      lines.push('PROPERTY ACQUISITION TRACKING');
+      acquisitionLabels.forEach((label, i) => {
+        const v = document.getElementById(`acq_${i}`).value;
+        lines.push(`${label}: ${v || '(blank)'}`);
+      });
+      lines.push('');
+      lines.push('DOCUMENTS TO OBTAIN BEFORE CLOSING');
+      documentLabels.forEach((label, i) => {
+        const done = document.getElementById(`doc_${i}_done`).checked;
+        lines.push(`${done ? '[x]' : '[ ]'} ${label}`);
+      });
+      lines.push('');
+      lines.push('CITY FEASIBILITY ITEMS');
+      cityLabels.forEach((label, i) => {
+        const done = document.getElementById(`city_${i}_done`).checked;
+        lines.push(`${done ? '[x]' : '[ ]'} ${label}`);
+      });
+      lines.push('');
+      lines.push('PROFESSIONAL PROPOSALS');
+      proposalLabels.forEach((label, i) => {
+        const done = document.getElementById(`prop_${i}_done`).checked;
+        lines.push(`${done ? '[x]' : '[ ]'} ${label}`);
+      });
+      return lines.join('\n');
+    }
+
     document.getElementById('sendBtn').addEventListener('click', function() {
       const name = document.getElementById('senderName').value.trim();
-      const notes = document.getElementById('senderNotes').value.trim();
+      const extraNotes = document.getElementById('senderNotes').value.trim();
       const statusEl = document.getElementById('sendStatus');
-      if (!name || !notes) {
-        statusEl.textContent = 'Please fill in your name and a note before sending.';
+      if (!name) {
+        statusEl.textContent = 'Please enter your name before sending.';
         statusEl.style.display = 'block';
         return;
       }
+      const fullDetails = (extraNotes ? extraNotes + '\n\n' : '') + buildSummary();
       function encodeForm(data) {
         return Object.keys(data).map(k => encodeURIComponent(k) + '=' + encodeURIComponent(data[k])).join('&');
       }
       fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: encodeForm({ 'form-name': 'project-checklist-update', submitted_by: name, details: notes })
+        body: encodeForm({ 'form-name': 'project-checklist-update', submitted_by: name, details: fullDetails })
       }).then((response) => {
         if (response.ok) {
-          statusEl.textContent = 'Update sent to Vanessa — thank you!';
-          document.getElementById('senderName').value = '';
+          statusEl.textContent = 'Full checklist sent to Vanessa — thank you!';
           document.getElementById('senderNotes').value = '';
         } else {
           statusEl.textContent = 'The update did not go through (error ' + response.status + ').';
