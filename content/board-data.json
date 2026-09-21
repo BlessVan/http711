@@ -1,14 +1,7 @@
 {
   "irs": {
-    "rows": [
-      {
-        "item": "Filing date",
-        "status": "",
-        "date": "",
-        "notes": ""
-      }
-    ],
-    "comments": "By Vanessa"
+    "rows": [],
+    "comments": ""
   },
   "licenses": {
     "rows": [
