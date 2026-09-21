@@ -1,25 +1,43 @@
 {
   "irs": {
     "rows": [
-      { "item": "Example: Form 990 (fiscal year)", "status": "Example: Filed", "date": "Example: 5/15/2026", "notes": "Example: Confirmation on file" }
+      {
+        "item": "Filing date",
+        "status": "",
+        "date": "",
+        "notes": ""
+      }
     ],
-    "comments": "Example: Make sure to file this form again next year."
+    "comments": "By Vanessa"
   },
   "licenses": {
     "rows": [
-      { "item": "Example: State charitable solicitation license", "status": "Example: Active", "date": "Example: 1/1/2027", "notes": "Example: —" }
+      {
+        "item": "Business License",
+        "status": "",
+        "date": "",
+        "notes": ""
+      }
     ],
     "comments": "Example: Renewal notice usually arrives 60 days early."
   },
   "franchise_tax": {
     "rows": [
-      { "item": "Example: Statement of Information", "status": "Example: Filed", "date": "Example: 3/1/2026", "notes": "Example: —" }
+      {
+        "item": "Updated Files",
+        "status": "",
+        "date": "",
+        "notes": ""
+      }
     ],
-    "comments": "Example: FTB filing is due annually regardless of income."
+    "comments": ""
   },
   "board_notes": {
     "entries": [
-      { "date": "Example: 8/1/2026", "text": "Example note text goes here." }
+      {
+        "date": "Meeting will take place online.  Email me",
+        "text": ""
+      }
     ],
     "comments": "Example: Add more room here for longer meeting notes."
   },
