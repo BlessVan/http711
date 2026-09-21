@@ -1,28 +1,137 @@
 {
   "actions": [
-    { "done": false, "note": "" },
-    { "done": false, "note": "" },
-    { "done": false, "note": "" },
-    { "done": false, "note": "" },
-    { "done": false, "note": "" },
-    { "done": false, "note": "" },
-    { "done": false, "note": "" },
-    { "done": false, "note": "" },
-    { "done": false, "note": "" },
-    { "done": false, "note": "" }
+    {
+      "done": true,
+      "note": ""
+    },
+    {
+      "done": true,
+      "note": ""
+    },
+    {
+      "done": false,
+      "note": ""
+    },
+    {
+      "done": false,
+      "note": ""
+    },
+    {
+      "done": false,
+      "note": ""
+    },
+    {
+      "done": false,
+      "note": ""
+    },
+    {
+      "done": false,
+      "note": ""
+    },
+    {
+      "done": false,
+      "note": ""
+    },
+    {
+      "done": false,
+      "note": ""
+    },
+    {
+      "done": false,
+      "note": ""
+    }
   ],
   "acquisition": [
-    "", "", "", "", "", "", "", "", "", ""
+    "Howard Garrison",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    ""
   ],
   "documents": [
-    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false },
-    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false }
+    {
+      "done": true
+    },
+    {
+      "done": false
+    },
+    {
+      "done": true
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    }
   ],
   "city": [
-    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false },
-    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false }
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    }
   ],
   "proposals": [
-    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false }
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    },
+    {
+      "done": false
+    }
   ]
 }
