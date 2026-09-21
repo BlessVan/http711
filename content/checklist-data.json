@@ -1,0 +1,28 @@
+{
+  "actions": [
+    { "done": false, "note": "" },
+    { "done": false, "note": "" },
+    { "done": false, "note": "" },
+    { "done": false, "note": "" },
+    { "done": false, "note": "" },
+    { "done": false, "note": "" },
+    { "done": false, "note": "" },
+    { "done": false, "note": "" },
+    { "done": false, "note": "" },
+    { "done": false, "note": "" }
+  ],
+  "acquisition": [
+    "", "", "", "", "", "", "", "", "", ""
+  ],
+  "documents": [
+    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false },
+    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false }
+  ],
+  "city": [
+    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false },
+    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false }
+  ],
+  "proposals": [
+    { "done": false }, { "done": false }, { "done": false }, { "done": false }, { "done": false }
+  ]
+}
