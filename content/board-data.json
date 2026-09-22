@@ -1,60 +1,26 @@
 {
   "irs": {
-    "rows": [
-      {
-        "item": "file 2026",
-        "status": "",
-        "date": "",
-        "notes": ""
-      }
-    ],
-    "comments": "Test page"
+    "rows": [],
+    "comments": ""
   },
   "licenses": {
-    "rows": [
-      {
-        "item": "Business License",
-        "status": "",
-        "date": "",
-        "notes": ""
-      },
-      {
-        "item": "Test page Sept 21",
-        "status": "",
-        "date": "",
-        "notes": ""
-      }
-    ],
+    "rows": [],
     "comments": "Example: Renewal notice usually arrives 60 days early.  Test page"
   },
   "franchise_tax": {
-    "rows": [
-      {
-        "item": "Updated Files",
-        "status": "",
-        "date": "",
-        "notes": "Test page Today"
-      }
-    ],
-    "comments": "Test page"
+    "rows": [],
+    "comments": ""
   },
   "board_notes": {
-    "entries": [
-      {
-        "date": "Testing page",
-        "text": ""
-      }
-    ],
+    "entries": [],
     "comments": "Example: Add more room here for longer meeting notes."
   },
   "todo": {
-    "items": [
-      "testing page for to do list"
-    ],
-    "comments": "Test page"
+    "items": [],
+    "comments": ""
   },
   "other": {
-    "text": "Test page",
-    "comments": "Test page"
+    "text": "",
+    "comments": ""
   }
 }
